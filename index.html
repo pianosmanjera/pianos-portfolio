@@ -1,537 +1,1535 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Pianos Gerald Manjera | GIS, Data Analytics & Information Management Portfolio</title>
-  <meta
-    name="description"
-    content="Portfolio of Pianos Gerald Manjera showcasing GIS, data analytics, information management, humanitarian assessments, dashboards, geospatial analysis, and digital solutions for decision-making."
-  />
-  <link rel="stylesheet" href="style.css" />
-  <link
-    rel="stylesheet"
-    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
-  />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pianos Gerald Manjera | GIS & Data Analytics Specialist</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0f14;
+      --surface: #131a23;
+      --surface2: #1a2332;
+      --border: #253040;
+      --accent: #c8841a;
+      --accent-light: #e8a535;
+      --teal: #38b2a0;
+      --text: #e4ddd4;
+      --muted: #748090;
+      --heading: 'Cormorant Garamond', Georgia, serif;
+      --body: 'DM Sans', sans-serif;
+      --mono: 'DM Mono', monospace;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--body);
+      font-weight: 400;
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+
+    /* Topographic background pattern */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      opacity: 0.35;
+      pointer-events: none;
+      z-index: 0;
+      background-image:
+        radial-gradient(ellipse 80% 50% at 20% 40%, rgba(200,132,26,0.06) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 80% 70%, rgba(56,178,160,0.04) 0%, transparent 50%),
+        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='300'%3E%3Cpath d='M0 150 C50 120,100 180,150 150 C200 120,250 180,300 150 C350 120,380 160,400 150' stroke='%23253040' stroke-width='1' fill='none' opacity='0.6'/%3E%3Cpath d='M0 100 C60 75,110 125,170 100 C230 75,270 115,330 100 C370 85,390 105,400 100' stroke='%23253040' stroke-width='0.8' fill='none' opacity='0.5'/%3E%3Cpath d='M0 200 C40 175,90 225,140 200 C190 175,240 215,290 200 C340 185,375 205,400 200' stroke='%23253040' stroke-width='0.8' fill='none' opacity='0.5'/%3E%3Cpath d='M0 50 C70 30,130 70,200 50 C270 30,320 60,400 50' stroke='%23253040' stroke-width='0.6' fill='none' opacity='0.4'/%3E%3Cpath d='M0 250 C55 230,105 265,160 250 C215 235,265 258,320 250 C360 243,385 254,400 250' stroke='%23253040' stroke-width='0.6' fill='none' opacity='0.4'/%3E%3C/svg%3E");
+      background-size: 100% 100%, 100% 100%, 400px 300px;
+    }
+
+    body > * { position: relative; z-index: 1; }
+
+    /* ===== NAV ===== */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      padding: 1rem 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      backdrop-filter: blur(24px) saturate(1.2);
+      -webkit-backdrop-filter: blur(24px) saturate(1.2);
+      background: rgba(11, 15, 20, 0.88);
+      border-bottom: 1px solid var(--border);
+      transition: all 0.3s ease;
+    }
+
+    .nav-logo {
+      font-family: var(--heading);
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--text);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-links {
+      display: flex;
+      gap: 2.2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent-light); }
+
+    .nav-cta {
+      background: var(--accent);
+      color: #000;
+      padding: 0.5rem 1.3rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      transition: all 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(200,132,26,0.35); }
+
+    /* ===== HERO ===== */
+    #home {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 130px 2.5rem 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .hero-content { max-width: 680px; }
+
+    .availability-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.6rem;
+      background: rgba(56,178,160,0.08);
+      border: 1px solid rgba(56,178,160,0.25);
+      color: var(--teal);
+      padding: 0.45rem 1.1rem;
+      border-radius: 100px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 2rem;
+      animation: fadeInDown 0.6s ease forwards;
+    }
+    .availability-badge::before {
+      content: '';
+      width: 7px; height: 7px;
+      background: var(--teal);
+      border-radius: 50%;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%,100% { opacity:1; transform:scale(1); }
+      50% { opacity:0.4; transform:scale(0.75); }
+    }
+    @keyframes fadeInDown {
+      from { opacity:0; transform:translateY(-20px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+    @keyframes fadeInUp {
+      from { opacity:0; transform:translateY(30px); }
+      to { opacity:1; transform:translateY(0); }
+    }
+
+    .hero-name {
+      font-family: var(--heading);
+      font-size: clamp(3.2rem, 7vw, 5.8rem);
+      font-weight: 700;
+      line-height: 1.04;
+      color: var(--text);
+      margin-bottom: 0.6rem;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+    .hero-name em { font-style: italic; color: var(--accent); }
+
+    .hero-title {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--accent);
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 1.6rem;
+      animation: fadeInUp 0.7s ease 0.2s both;
+    }
+
+    .hero-desc {
+      font-size: 1.08rem;
+      color: var(--muted);
+      max-width: 560px;
+      line-height: 1.85;
+      margin-bottom: 2.5rem;
+      animation: fadeInUp 0.7s ease 0.3s both;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.7s ease 0.4s both;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #000;
+      padding: 0.8rem 1.9rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      transition: all 0.22s;
+      border: 2px solid var(--accent);
+    }
+    .btn-primary:hover { background: var(--accent-light); border-color: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 28px rgba(200,132,26,0.35); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text);
+      padding: 0.8rem 1.9rem;
+      border-radius: 4px;
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      transition: all 0.22s;
+      border: 2px solid var(--border);
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); transform: translateY(-2px); }
+
+    /* ===== IMPACT BAR ===== */
+    .impact-bar {
+      background: var(--surface);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 3rem 2.5rem;
+    }
+    .impact-bar-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: var(--heading);
+      font-size: 3.2rem;
+      font-weight: 700;
+      color: var(--accent);
+      line-height: 1;
+    }
+    .stat-label {
+      font-size: 0.77rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.09em;
+      margin-top: 0.5rem;
+    }
+
+    /* ===== SECTIONS ===== */
+    .section-wrap {
+      padding: 6rem 2.5rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-wrap-full {
+      padding: 6rem 2.5rem;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      background: var(--surface);
+    }
+    .section-wrap-full .inner { max-width: 1200px; margin: 0 auto; }
+
+    .section-tag {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      margin-bottom: 0.9rem;
+    }
+
+    h2.section-title {
+      font-family: var(--heading);
+      font-size: clamp(2rem, 4vw, 3.2rem);
+      font-weight: 600;
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+
+    .section-divider {
+      width: 56px;
+      height: 2px;
+      background: linear-gradient(to right, var(--accent), transparent);
+      margin-bottom: 3rem;
+    }
+
+    /* ===== ABOUT ===== */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    .about-text p {
+      color: var(--muted);
+      margin-bottom: 1.3rem;
+      line-height: 1.9;
+      font-size: 0.97rem;
+    }
+
+    .about-meta {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 2rem;
+      position: sticky;
+      top: 90px;
+    }
+    .meta-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+      gap: 1rem;
+    }
+    .meta-item:last-child { border-bottom: none; }
+    .meta-key { color: var(--muted); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap; padding-top: 2px; }
+    .meta-val { color: var(--text); font-weight: 500; text-align: right; }
+    .meta-val a { color: var(--accent); text-decoration: none; }
+    .meta-val.available {
+      color: var(--teal);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .meta-val.available::before {
+      content: '';
+      width: 6px; height: 6px;
+      background: var(--teal);
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* ===== TIMELINE ===== */
+    .timeline { position: relative; padding-left: 2rem; }
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 8px; bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--accent), rgba(200,132,26,0.1));
+    }
+    .timeline-item { position: relative; margin-bottom: 3.5rem; padding-left: 2.2rem; }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -2.6rem; top: 6px;
+      width: 9px; height: 9px;
+      background: var(--accent);
+      border-radius: 50%;
+      border: 2px solid var(--bg);
+      box-shadow: 0 0 0 3px rgba(200,132,26,0.18);
+    }
+    .timeline-period {
+      font-family: var(--mono);
+      font-size: 0.72rem;
+      color: var(--accent);
+      letter-spacing: 0.09em;
+      margin-bottom: 0.35rem;
+    }
+    .timeline-role {
+      font-family: var(--heading);
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.15rem;
+      line-height: 1.2;
+    }
+    .timeline-org {
+      font-size: 0.82rem;
+      color: var(--teal);
+      margin-bottom: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    .timeline-bullets { list-style: none; }
+    .timeline-bullets li {
+      color: var(--muted);
+      font-size: 0.9rem;
+      padding: 0.3rem 0 0.3rem 1.3rem;
+      position: relative;
+      line-height: 1.65;
+    }
+    .timeline-bullets li::before {
+      content: '→';
+      position: absolute;
+      left: 0;
+      color: var(--accent);
+      font-size: 0.72rem;
+      top: 0.42rem;
+    }
+
+    /* ===== SKILLS ===== */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+    .skill-category {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      transition: border-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    }
+    .skill-category:hover { border-color: var(--accent); transform: translateY(-4px); box-shadow: 0 12px 35px rgba(0,0,0,0.3); }
+    .skill-cat-title {
+      font-family: var(--heading);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+    .skill-tag {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      color: var(--muted);
+      padding: 0.28rem 0.7rem;
+      border-radius: 4px;
+      font-size: 0.78rem;
+      font-family: var(--mono);
+      transition: all 0.2s;
+      cursor: default;
+    }
+    .skill-tag:hover { border-color: var(--accent); color: var(--accent); background: rgba(200,132,26,0.06); }
+
+    /* ===== PROJECTS ===== */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+    .project-card {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      transition: all 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover { border-color: var(--accent); transform: translateY(-6px); box-shadow: 0 20px 50px rgba(0,0,0,0.45); }
+    .project-header {
+      padding: 1.8rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .project-type {
+      font-family: var(--mono);
+      font-size: 0.68rem;
+      color: var(--accent);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .project-title {
+      font-family: var(--heading);
+      font-size: 1.35rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.75rem;
+      line-height: 1.25;
+    }
+    .project-desc { color: var(--muted); font-size: 0.88rem; line-height: 1.75; }
+    .project-body { padding: 1.5rem 1.8rem; flex: 1; display: flex; flex-direction: column; }
+    .project-contributions { list-style: none; margin-bottom: 1.5rem; flex: 1; }
+    .project-contributions li {
+      color: var(--muted);
+      font-size: 0.84rem;
+      padding: 0.28rem 0 0.28rem 1.2rem;
+      position: relative;
+      line-height: 1.6;
+    }
+    .project-contributions li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--teal);
+      font-size: 0.68rem;
+      top: 0.45rem;
+    }
+    .project-stack { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 1.3rem; }
+    .stack-tag {
+      background: rgba(56,178,160,0.08);
+      border: 1px solid rgba(56,178,160,0.2);
+      color: var(--teal);
+      padding: 0.2rem 0.6rem;
+      border-radius: 3px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+    }
+    .project-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-size: 0.83rem;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      letter-spacing: 0.02em;
+      transition: gap 0.2s;
+    }
+    .project-link:hover { gap: 0.6rem; }
+
+    /* ===== CERTS ===== */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+    .cert-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.6rem;
+      transition: all 0.3s;
+    }
+    .cert-card:hover { border-color: var(--accent); transform: translateY(-3px); }
+    .cert-org { font-family: var(--mono); font-size: 0.68rem; color: var(--teal); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 0.5rem; }
+    .cert-title { font-family: var(--heading); font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 0.75rem; line-height: 1.25; }
+    .cert-desc { color: var(--muted); font-size: 0.84rem; margin-bottom: 1rem; line-height: 1.65; }
+    .cert-link { color: var(--accent); font-size: 0.8rem; font-weight: 600; text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; transition: gap 0.2s; }
+    .cert-link:hover { gap: 0.5rem; }
+
+    /* ===== AI TOOLS ===== */
+    .ai-tools-grid { display: flex; flex-direction: column; gap: 2rem; }
+
+    .ai-section {
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-top: 2px solid var(--accent);
+      border-radius: 10px;
+      padding: 2.5rem;
+    }
+
+    .ai-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(200,132,26,0.08);
+      border: 1px solid rgba(200,132,26,0.25);
+      color: var(--accent);
+      padding: 0.28rem 0.75rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-family: var(--mono);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+
+    .ai-title {
+      font-family: var(--heading);
+      font-size: 1.9rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 0.5rem;
+    }
+
+    .ai-desc { color: var(--muted); font-size: 0.9rem; margin-bottom: 1.5rem; line-height: 1.7; }
+
+    textarea, input[type="text"], input[type="password"] {
+      width: 100%;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 0.9rem 1rem;
+      font-family: var(--body);
+      font-size: 0.9rem;
+      resize: vertical;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    textarea:focus, input:focus { border-color: var(--accent); }
+    textarea::placeholder, input::placeholder { color: var(--muted); }
+
+    .btn-ai {
+      background: var(--accent);
+      color: #000;
+      padding: 0.78rem 1.8rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      cursor: pointer;
+      transition: all 0.22s;
+      font-family: var(--body);
+      margin-top: 1rem;
+    }
+    .btn-ai:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,132,26,0.3); }
+    .btn-ai:disabled { opacity: 0.45; cursor: not-allowed; transform: none; box-shadow: none; }
+
+    /* API Key */
+    .api-setup {
+      background: rgba(200,132,26,0.04);
+      border: 1px solid rgba(200,132,26,0.18);
+      border-radius: 8px;
+      padding: 1.2rem 1.5rem;
+      margin-bottom: 2rem;
+    }
+    .api-setup-title { font-size: 0.82rem; font-weight: 600; color: var(--text); margin-bottom: 0.4rem; }
+    .api-setup p { color: var(--muted); font-size: 0.82rem; margin-bottom: 0.75rem; line-height: 1.6; }
+    .api-key-row { display: flex; gap: 0.5rem; }
+    .api-key-row input { font-family: var(--mono); font-size: 0.8rem; flex: 1; }
+    .api-key-btn {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      padding: 0.6rem 1rem;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 0.8rem;
+      white-space: nowrap;
+      font-family: var(--body);
+      transition: all 0.2s;
+    }
+    .api-key-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .api-key-btn.danger:hover { border-color: #e87070; color: #e87070; }
+    .api-status { font-size: 0.78rem; margin-top: 0.6rem; font-family: var(--mono); }
+    .api-status.connected { color: var(--teal); }
+    .api-status.disconnected { color: #e87070; }
+
+    /* Fit result */
+    .ai-result {
+      margin-top: 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.8rem;
+      display: none;
+    }
+    .ai-result.visible { display: block; }
+
+    .fit-score-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .fit-number {
+      font-family: var(--heading);
+      font-size: 4.5rem;
+      font-weight: 700;
+      line-height: 1;
+      min-width: 5rem;
+    }
+    .fit-bar-container { flex: 1; }
+    .fit-bar-label { font-size: 0.75rem; color: var(--muted); margin-bottom: 0.5rem; letter-spacing: 0.05em; text-transform: uppercase; }
+    .fit-bar-track { height: 7px; background: var(--surface2); border-radius: 4px; overflow: hidden; }
+    .fit-bar-fill { height: 100%; background: linear-gradient(to right, var(--accent), var(--accent-light)); border-radius: 4px; transition: width 1.2s cubic-bezier(0.4,0,0.2,1); width: 0%; }
+    .ai-result-text { color: var(--text); font-size: 0.9rem; line-height: 1.85; white-space: pre-wrap; }
+
+    /* Chat */
+    .chat-messages {
+      height: 360px;
+      overflow-y: auto;
+      padding: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      scroll-behavior: smooth;
+    }
+    .chat-messages::-webkit-scrollbar { width: 5px; }
+    .chat-messages::-webkit-scrollbar-track { background: transparent; }
+    .chat-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
+
+    .chat-msg {
+      max-width: 82%;
+      padding: 0.75rem 1rem;
+      border-radius: 8px;
+      font-size: 0.88rem;
+      line-height: 1.65;
+    }
+    .chat-msg.user { background: var(--accent); color: #000; align-self: flex-end; font-weight: 500; }
+    .chat-msg.ai { background: var(--surface2); border: 1px solid var(--border); color: var(--text); align-self: flex-start; }
+    .chat-msg.typing { color: var(--muted); font-style: italic; }
+
+    .chat-input-row { display: flex; gap: 0.75rem; }
+    .chat-input-row input { flex: 1; resize: none; }
+    .chat-send-btn {
+      background: var(--accent);
+      color: #000;
+      padding: 0 1.3rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      cursor: pointer;
+      font-family: var(--body);
+      font-size: 0.85rem;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .chat-send-btn:hover { background: var(--accent-light); }
+
+    /* ===== CONTACT ===== */
+    .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+
+    .contact-info h3 { font-family: var(--heading); font-size: 2rem; font-weight: 600; color: var(--text); margin-bottom: 1rem; line-height: 1.2; }
+    .contact-info p { color: var(--muted); margin-bottom: 2rem; line-height: 1.8; }
+
+    .contact-links { display: flex; flex-direction: column; gap: 0.85rem; }
+    .contact-link-item {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      text-decoration: none;
+      color: var(--text);
+      padding: 1rem 1.2rem;
+      background: var(--surface2);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      transition: all 0.22s;
+    }
+    .contact-link-item:hover { border-color: var(--accent); transform: translateX(4px); }
+    .contact-link-icon {
+      width: 38px; height: 38px;
+      background: rgba(200,132,26,0.08);
+      border: 1px solid rgba(200,132,26,0.2);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.95rem;
+      flex-shrink: 0;
+    }
+    .contact-link-text { font-size: 0.88rem; font-weight: 500; }
+    .contact-link-label { font-size: 0.72rem; color: var(--muted); margin-top: 0.15rem; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .contact-form { display: flex; flex-direction: column; gap: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.75rem;
+      color: var(--muted);
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      margin-bottom: 0.4rem;
+    }
+    .form-group textarea { min-height: 130px; }
+    .form-submit {
+      background: var(--accent);
+      color: #000;
+      padding: 0.9rem;
+      border: none;
+      border-radius: 4px;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      font-family: var(--body);
+      transition: all 0.22s;
+      letter-spacing: 0.04em;
+    }
+    .form-submit:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(200,132,26,0.3); }
+
+    /* ===== FOOTER ===== */
+    footer {
+      text-align: center;
+      padding: 3rem 2rem;
+      border-top: 1px solid var(--border);
+      color: var(--muted);
+      font-size: 0.82rem;
+      line-height: 1.9;
+    }
+    footer span { color: var(--accent); }
+
+    /* ===== SCROLL REVEAL ===== */
+    .reveal {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.75s ease, transform 0.75s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .impact-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .skills-grid { grid-template-columns: 1fr 1fr; }
+      .about-meta { position: static; }
+    }
+    @media (max-width: 560px) {
+      .skills-grid { grid-template-columns: 1fr; }
+      .impact-bar-inner { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions { flex-direction: column; }
+    }
+  </style>
 </head>
 <body>
-  <header class="header">
-    <div class="container nav">
-      <a href="#home" class="logo">
-        <img src="logo.png" alt="Pianos Manjera logo"/>
-      </a>
 
-      <button
-        class="menu-toggle"
-        id="menuToggle"
-        aria-label="Open navigation menu"
-        aria-expanded="false"
-        aria-controls="navMenu"
-      >
-        ☰
-      </button>
+<!-- ===== NAV ===== -->
+<nav>
+  <a href="#home" class="nav-logo">Pianos<span>.</span>Manjera</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#ai-tools">AI Tools</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="https://pianosmanjera.github.io/pianos-portfolio/resume.pdf" target="_blank" class="nav-cta">Download CV</a>
+</nav>
 
-      <nav class="nav-menu" id="navMenu">
-        <a href="#about">About</a>
-        <a href="#highlights">Highlights</a>
-        <a href="#focus">Focus</a>
-        <a href="#experience">Experience</a>
-        <a href="#skills">Skills</a>
-        <a href="#certifications">Certifications</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
-      </nav>
+<!-- ===== HERO ===== -->
+<section id="home">
+  <div class="hero-content">
+    <div class="availability-badge">Open to New Opportunities</div>
+    <h1 class="hero-name">Pianos <em>Gerald</em><br>Manjera</h1>
+    <p class="hero-title">GIS · Data Analytics · Information Management</p>
+    <p class="hero-desc">
+      I design data-driven solutions that combine geospatial analysis, humanitarian decision support, and information systems — turning complex datasets into actionable intelligence across Africa and beyond.
+    </p>
+    <div class="hero-actions">
+      <a href="#projects" class="btn-primary">View My Work</a>
+      <a href="#ai-tools" class="btn-secondary">⚡ AI Job Matcher</a>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main>
-    <!-- HERO -->
-    <section id="home" class="hero">
-      <div class="container hero-content">
-        <div class="hero-text fade-in">
-          <p class="eyebrow">Hello, I'm</p>
-          <h1>Pianos Gerald Manjera</h1>
-          <h2>
-            Geospatial & Information Management Specialist
-          </h2>
-          
-          </h3>
-            GIS | Data Analytics | Humanitarian Decision Support
-          </h3> </br>
-          
-          <p class="hero-description">
-            I design and deliver data-driven solutions that combine geospatial analysis,
-            information management, monitoring systems, dashboards, and digital data
-            collection to support humanitarian and development decision-making.
-          </p>
-
-          <p class="hero-description">
-            My work spans GIS, food security analysis, survey systems, business
-            intelligence, and operational reporting, with experience supporting country,
-            regional, and inter-agency initiatives across humanitarian contexts.
-          </p>
-
-          <div class="hero-buttons">
-            <a href="#projects" class="btn btn-primary">View Projects</a>
-            <a href="#contact" class="btn btn-secondary">Contact Me</a>
-          </div>
-        </div>
-
-        <aside class="hero-card fade-in">
-          <img src="profile.jpg" alt="Pianos Gerald Manjera portrait" class="profile-image" />
-          <div class="hero-card-info">
-            <p><strong>Location:</strong> Harare, Zimbabwe</p>
-            <p><strong>Current Role:</strong> WFP Research, Assessments and Monitoring Officer</p>
-            <p><strong>Focus:</strong> GIS, Data Analytics, Information Management, Food Security Analysis</p>
-            <p><strong>Status:</strong> Open to consulting, analytics, GIS, and information management opportunities</p>
-          </div>
-        </aside>
-      </div>
-    </section>
-
-    <!-- ABOUT -->
-    <section id="about" class="section">
-      <div class="container fade-in">
-        <h2 class="section-title">About Me</h2>
-
-        <p class="section-text">
-          I am a GIS and data analytics professional with over nine years of experience supporting humanitarian and 
-          development operations across Southern and Eastern Africa, and Afghanistan.
-          I specialize in transforming data into decision-ready insights for food security analysis, targeting, emergency 
-          preparedness, and programme monitoring. My work integrates GIS, dashboards, survey systems, and analytics to 
-          support both operational teams and strategic planning.
-          I have contributed to regional and country-level initiatives, supporting UN agencies and partners with geospatial analysis, 
-          vulnerability assessments, hazard monitoring, and information management systems.
-        </p>
-
-        <div class="about-points">
-          <div class="about-point-card">
-            <h3>Core Background</h3>
-            <ul class="about-list">
-              <li>Advanced geospatial analysis and GIS-driven decision support, delivering mapping, spatial modelling, and hazard analysis 
-                for food security, targeting, and emergency preparedness</li>
-              <li>End-to-end data analytics and business intelligence, transforming complex datasets into actionable insights through 
-                dashboards, statistical analysis, and integrated reporting systems</li>
-              <li>Humanitarian information management systems design and optimization, strengthening data workflows, governance, and 
-                interoperability across programmes and partners</li>
-              <li>Design and implementation of digital data collection systems (Kobo, ODK, Survey123), aligned with global standards 
-                (MICS/DHS) for high-quality, structured data capture in complex environments</li>
-              <li>Development of integrated analytical pipelines combining GIS, survey data, and real-time indicators to support
-                 monitoring, early warning, and evidence-based decision-making</li>
-
-            </ul>
-          </div>
-
-          <div class="about-point-card">
-            <h3>Professional Journey</h3>
-            <ul class="about-list">
-              <li>Providing integrated leadership across GIS, VAM, and M&E within the World Food Programme (WFP), evolving from regional 
-                GIS coordination in Southern Africa to leading country-level analytical functions in Zimbabwe</li>
-              <li>Supporting food security analysis, targeting, monitoring, and operational decision-making through geospatial analysis, dashboards, 
-                and integrated data systems</li>
-              <li>Extensive experience across Africa and complex contexts, including Afghanistan, delivering vulnerability assessments, hazard 
-                monitoring, and information management systems</li>
-              <li>Driving digital transformation through automated workflows, dashboards, and integration of Earth Observation and AI-driven 
-                indicators for early warning and reporting</li>
-              <li>Strengthening data systems, spatial data infrastructure, and governance frameworks to improve data quality, accessibility, 
-                and decision support across programmes and partners</li>
-            </ul>
-          </div>
-        </div>
-
-        <p class="section-text">
-          I work across the full data and analysis pipeline — from data collection and
-          quality assurance to geospatial modelling, dashboard development, reporting,
-          and decision support. I enjoy building solutions that translate complex data
-          into practical, usable intelligence for operational teams and leadership.
-        </p>
-
-        <p class="section-text">
-          My areas of interest include food security analysis, hazard monitoring,
-          GIS-enabled decision support, digital systems improvement, and the use of
-          analytics to strengthen accountability and programme effectiveness.
-        </p>
-      </div>
-    </section>
-
-    <!-- HIGHLIGHTS -->
-    <section id="highlights" class="section section-alt">
-      <div class="container fade-in">
-        <h2 class="section-title">Professional Highlights</h2>
-
-        <div class="highlights-grid">
-          <div class="card highlight-card">
-            <h3>GIS &amp; Spatial Intelligence</h3>
-            <p>
-              Led geospatial analysis and GIS production within WFP, supporting regional operations in Southern Africa and
-              country-level programming in Zimbabwe through flood risk mapping, hazard monitoring, and targeting maps for food 
-              security interventions.
-            </p>
-          </div>
-
-          <div class="card highlight-card">
-            <h3>Data Analytics &amp; Dashboards</h3>
-            <p>
-              Developed dashboards and analytical systems within UNHCR and WFP to support community feedback analysis, food 
-              security monitoring, and programme targeting, enabling evidence-based planning and operational decision-making.
-            </p>
-          </div>
-
-          <div class="card highlight-card">
-            <h3>Information Management</h3>
-            <p>
-              Designed and implemented information management systems and digital data collection workflows across UNHCR, REACH, 
-              and NPA operations, supporting large-scale assessments, data governance, and reporting in complex humanitarian contexts.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- EXPERIENCE -->
-    <section id="experience" class="section section-alt">
-      <div class="container fade-in">
-        <h2 class="section-title">Selected Professional Experience</h2>
-
-        <div class="timeline">
-          <div class="timeline-item">
-            <h3> Research, Assesments and Monitoring Officer — World Food Programme Zimbabwe</h3>
-            <span class="timeline-date">Nov 2025 - Current</span>
-
-            <ul class="project-bullets">
-              <li>Lead and coordinate food security analysis to generate timely evidence, early warning insights, and rapid-response intelligence 
-                for preparedness, targeting, and programme decision-making</li>
-              <li>Coordinate with government, UN agencies, partners, and internal units to ensure alignment of data, analysis, and programme priorities</li>
-              <li>Strengthen and maintain RAM systems, tools, and data pipelines to ensure high-quality data collection, monitoring, and analysis in line with 
-                corporate standards</li>
-              <li>Enhance capacity in decentralized evaluation management and evidence processes to support high-quality planning, oversight, and implementation of 
-                evaluation activities</li>
-            </ul>
-          </div>
-
-          <div class="timeline-item">
-            <h3>GIS Officer (Mapping and Analysis) — World Food Programme Southern Africa Regional Support</h3>
-            <span class="timeline-date">Sept 2024 - Sept 2025</span>
-            <p>
-              <li> Provided technical GIS leadership in support of WFP’s regional Vulnerability Analysis and Mapping (VAM) 
-                priorities, including food security monitoring, geographic targeting, and situation analysis.</li>
-                <li> Designed and implemented modular geospatial workflows and automated spatial reporting using 
-                  ArcGIS Enterprise and Google Earth Engine to support evidence-based planning and programme design.</li>
-                <li> Developed and maintained real-time dashboards integrating Earth Observation and AI-driven indicators 
-                  (e.g., rainfall, shocks, vegetation) to enhance early warning and operational coordination.</li>
-                <li> Contributed to proposal development and reporting processes by providing geospatial inputs aligned 
-                  with donor expectations and VAM programmatic frameworks.</li>
-               
-            </p>
-          </div>
-
-          <div class="timeline-item">
-            <h3>Associate Information Management Officer (AAP)— UNHCR East, Horn of Africa and Great Lakes (EHAGAL) Regional Support </h3>
-            <span class="timeline-date">May 2023 - Aug 2024</span>
-            <p>
-              <li> Developed qualitative data feedback systems using digital tools (Kobo Toolbox, Power BI) for enhanced community 
-                engagement in program design.</li>
-              <li> Developed SOPs and data governance protocols for GIS and IM platforms, contributing to standardized workflows 
-                across multiple country offices. </li>
-              <li> Aligned IM platforms with result management systems style indicators, enhancing cross-project visibility 
-                and compliance tracking.</li>
-              <li> Delivered IM briefings and training sessions to operational teams across five countries, increasing data-driven 
-                decision-making capacity.</li>
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- SKILLS -->
-    <section id="skills" class="section">
-      <div class="container fade-in">
-        <h2 class="section-title">Skills</h2>
-
-        <div class="skills-grid">
-          <div class="card">
-            <h3>Analytics, Modelling & Decision Support</h3>
-
-            <p class="skills-description">
-              Data analysis and modelling for food security and programme decision-making, including statistical analysis, dashboard development, and integrated reporting.
-            </p>
-
-            <ul class="tag-list small">
-              <li>Python</li>
-              <li>R</li>
-              <li>SQL</li>
-              <li>Excel</li>
-              <li>Power Query</li>
-              <li>SPSS</li>
-              <li>DAX</li>
-            </ul>
-          </div>
-
-         <div class="card">
-            <h3>GIS, Spatial Analysis & Visualization</h3>
-
-            <p class="skills-description">
-              Geospatial analysis, mapping, and spatial modelling to support targeting, hazard monitoring, and operational planning.
-            </p>
-
-            <ul class="tag-list small">
-              <li>ArcGIS Pro</li>
-              <li>ArcGIS Online</li>
-              <li>ArcGIS Enterprise</li>
-              <li>QGIS</li>
-              <li>Power BI</li>
-              <li>Tableau</li>
-              <li>Cartography</li>
-            </ul>
-          </div>
-          <div class="card">
-            <h3>Information Management & Data Systems</h3>
-
-            <p class="skills-description">
-              Design and management of data collection systems, pipelines, and workflows for large-scale assessments, monitoring, and reporting.
-            </p>
-
-            <ul class="tag-list small">
-              <li>KoboToolbox</li>
-              <li>ODK</li>
-              <li>Survey Design</li>
-              <li>Dashboards</li>
-              <li>Reporting Systems</li>
-              <li>Data Quality Assurance</li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </section>
-
-    <!-- CERTIFICATIONS -->
-    <section id="certifications" class="section section-alt">
-      <div class="container fade-in">
-        <h2 class="section-title">Certifications &amp; Professional Development</h2>
-        <p class="section-text">
-          My professional development reflects continued growth in GIS, analytics,
-          information management, digital systems, and evidence-driven humanitarian work.
-        </p>
-
-        <div class="certifications-grid">
-         <article class="card certification-card">
-            <h3>Data Analyst Associate — DataCamp</h3>
-            <p>
-              Certification demonstrating applied skills in SQL, data analysis, and analytical problem-solving for real-world datasets.
-            </p>
-            <div class="cert-links">
-              <a href="https://www.datacamp.com/certificate/DAA0015383093855" target="_blank" class="btn btn-secondary">
-                <i class="fas fa-external-link-alt"></i> View Certificate
-              </a>
-            </div>
-          </article>
-
-         <article class="card certification-card">
-          <h3>Information Management & Data Systems — Maven Analytics</h3>
-          <p>
-            Certification focused on data workflows, reporting systems, and analytics tools supporting data-driven decision-making.
-          </p>
-          <div class="cert-links">
-            <a href="https://certificates.mavenanalytics.io/e6e9a3d8-c198-4fa9-94a3-fe5a24c2f161#acc.MJvZdDLT" target="_blank" class="btn btn-secondary">
-              <i class="fas fa-external-link-alt"></i> View Certificate
-            </a>
-          </div>
-        </article>
-
-          <article class="card certification-card">
-          <h3>GIS & Spatial Analysis — Ongoing Professional Development</h3>
-          <p>
-            Continuous professional development in advanced GIS, spatial analysis, and geospatial workflows through practical application in humanitarian operations.
-          </p>
-          <div class="cert-links">
-            <span class="cert-status">In Progress</span>
-          </div>
-        </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- PROJECTS -->
-    <section id="projects" class="section">
-      <div class="container fade-in">
-        <h2 class="section-title">Projects</h2>
-
-        <div class="projects-grid">
-          <article class="project-card">
-            <h3>Regional Flood Hazard &amp; Risk Mapping</h3>
-
-            <p>
-              Developed regional flood hazard and risk analysis to support early warning,
-              preparedness, and operational planning across Southern Africa, integrating
-              forecast data, exposure indicators, and historical flood events to generate
-              actionable risk classifications.
-            </p>
-
-            <p class="project-note">
-              Featured by RedR Australia as part of flood mapping work supporting humanitarian
-              operations in Southern Africa.
-            </p>
-
-            <h4 class="project-subtitle">Key Contributions</h4>
-            <ul class="project-bullets">
-              <li>Integrated multi-source datasets (forecast, exposure, and historical flood events) into a unified analytical workflow</li>
-              <li>Produced decision-focused maps and regional risk outputs used in preparedness and operational planning</li>
-              <li>Developed a flood risk scorecard to classify countries into severity levels for prioritization</li>
-              <li>Translated complex geospatial analysis into clear, actionable insights for non-technical stakeholders</li>
-            </ul>
-
-            <p><strong>Tech Stack:</strong> ArcGIS Pro, QGIS, Excel, Earth Observation data integration</p>
-
-            <div class="project-links">
-              <a href="https://www.redr.org.au/deployees-in-the-field/flood-mapping-saving-lives-in-southern-africa/" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-external-link-alt"></i> View RedR Case Study ↗
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <h3>Food Security Dashboards &amp; Analytical Reporting</h3>
-
-            <p>
-              Designed and supported dashboards and reporting products that translate
-              assessment, monitoring, and operational data into actionable insights for
-              food security analysis, targeting, and programme decision-making.
-            </p>
-
-            <h4 class="project-subtitle">Key Contributions</h4>
-            <ul class="project-bullets">
-              <li>Built data workflows from collection tools into analysis-ready outputs</li>
-              <li>Developed visual products for management, technical teams, and partners</li>
-              <li>Improved consistency in indicators, reporting logic, and presentation</li>
-              <li>Supported evidence generation for planning, monitoring, and review processes</li>
-            </ul>
-
-            <p><strong>Tech Stack:</strong> Power BI, Excel, Python, R, KoboToolbox</p>
-
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-chart-line"></i> Add Project Link ↗
-              </a>
-            </div>
-          </article>
-
-          <article class="project-card">
-            <h3>GIS Capacity Building &amp; Open-Source Transition Support</h3>
-
-            <p>
-              Planned and delivered practical GIS learning sessions and guiding materials
-              to help users strengthen spatial analysis skills and expand from proprietary
-              GIS tools into open-source workflows.
-            </p>
-
-            <h4 class="project-subtitle">Key Contributions</h4>
-            <ul class="project-bullets">
-              <li>Designed structured GIS learning sessions with practical exercises</li>
-              <li>Prepared step-by-step support materials for technical users</li>
-              <li>Promoted complementary use of QGIS and ArcGIS in operational work</li>
-              <li>Supported adoption of more flexible and sustainable GIS workflows</li>
-            </ul>
-
-            <p><strong>Tech Stack:</strong> QGIS, ArcGIS Pro, PDF guides, online facilitation</p>
-
-            <div class="project-links">
-              <a href="#" target="_blank" rel="noopener noreferrer">
-                <i class="fas fa-laptop"></i> Add Project Link ↗
-              </a>
-            </div>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <!-- RESUME -->
-    <section id="resume" class="section section-alt">
-      <div class="container fade-in">
-        <h2 class="section-title">Resume</h2>
-        <p class="section-text">
-          Interested in learning more about my experience in GIS, analytics,
-          information management, dashboards, and humanitarian decision support?
-        </p>
-        <p class="section-text">
-          Download my full resume below.
-        </p>
-
-        <div class="resume-actions">
-          <a href="resume.pdf" class="btn btn-primary" target="_blank" rel="noopener noreferrer">
-            View Resume
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- CONTACT -->
-    <section id="contact" class="section">
-      <div class="container fade-in">
-        <h2 class="section-title">Contact</h2>
-        <p class="section-text">
-          Feel free to reach out for consultancy, collaboration, humanitarian analytics,
-          GIS work, dashboards, or information management opportunities.
-        </p>
-
-        <div class="contact-grid">
-          <a class="contact-card" href="mailto:pianos.manjera@gmail.com">
-            <h3>Email</h3>
-            <p>pianos.manjera@gmail.com</p>
-          </a>
-
-          <a class="contact-card" href="https://github.com/pianosmanjera" target="_blank" rel="noopener noreferrer">
-            <h3>GitHub</h3>
-            <p>github.com/pianosmanjera</p>
-          </a>
-
-          <a
-            class="contact-card"
-            href="https://www.linkedin.com/in/pianosmanjera/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h3>LinkedIn</h3>
-            <p>linkedin.com/in/pianosmanjera</p>
-          </a>
-        </div>
-
-        <form class="contact-form" id="contactForm">
-          <div class="form-row">
-            <label for="name">Name</label>
-            <input id="name" name="name" type="text" placeholder="Your name" required />
-          </div>
-
-          <div class="form-row">
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" placeholder="Your email" required />
-          </div>
-
-          <div class="form-row">
-            <label for="message">Message</label>
-            <textarea
-              id="message"
-              name="message"
-              rows="5"
-              placeholder="Write your message here..."
-              required
-            ></textarea>
-          </div>
-
-          <button type="submit" class="btn btn-primary">Send Message</button>
-          <p id="formMessage" class="form-message" aria-live="polite"></p>
-        </form>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="container">
-      <p>© <span id="year"></span> Pianos Gerald Manjera • Built with HTML, CSS &amp; JavaScript</p>
+<!-- ===== IMPACT STATS ===== -->
+<div class="impact-bar">
+  <div class="impact-bar-inner">
+    <div>
+      <div class="stat-number" data-count="9" data-suffix="+">0</div>
+      <div class="stat-label">Years of Experience</div>
     </div>
-  </footer>
+    <div>
+      <div class="stat-number" data-count="5" data-suffix="+">0</div>
+      <div class="stat-label">Countries Supported</div>
+    </div>
+    <div>
+      <div class="stat-number" data-count="3" data-suffix="">0</div>
+      <div class="stat-label">UN Agencies Served</div>
+    </div>
+    <div>
+      <div class="stat-number" data-count="15" data-suffix="+">0</div>
+      <div class="stat-label">Major Projects Delivered</div>
+    </div>
+  </div>
+</div>
 
-  <script src="script.js"></script>
+<!-- ===== ABOUT ===== -->
+<section id="about">
+  <div class="section-wrap reveal">
+    <p class="section-tag">// 01 — About</p>
+    <h2 class="section-title">Turning complex data<br>into decision-ready insight</h2>
+    <div class="section-divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          I'm a GIS and data analytics professional with over nine years of experience supporting humanitarian and development operations across Southern and Eastern Africa, and Afghanistan. I specialize in transforming data into decision-ready insights for food security analysis, targeting, emergency preparedness, and programme monitoring.
+        </p>
+        <p>
+          My work integrates geospatial analysis, dashboards, survey systems, and analytics to support both operational teams and strategic planning. I've contributed to regional and country-level initiatives, supporting UN agencies and partners with vulnerability assessments, hazard monitoring, and information management systems.
+        </p>
+        <p>
+          I work across the full data and analysis pipeline — from collection and quality assurance to spatial modelling, dashboard development, reporting, and decision support. I enjoy building solutions that translate complex data into practical, usable intelligence for operational teams and leadership.
+        </p>
+        <p>
+          My areas of interest include food security analysis, hazard monitoring, GIS-enabled decision support, digital systems improvement, and the use of analytics to strengthen accountability and programme effectiveness.
+        </p>
+      </div>
+      <div class="about-meta">
+        <div class="meta-item">
+          <span class="meta-key">Location</span>
+          <span class="meta-val">Harare, Zimbabwe</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Current Role</span>
+          <span class="meta-val">RAM Officer, WFP Zimbabwe</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Focus</span>
+          <span class="meta-val">GIS · Food Security · IM · Analytics</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Status</span>
+          <span class="meta-val available">Open to Opportunities</span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">Email</span>
+          <span class="meta-val"><a href="mailto:pianos.manjera@gmail.com">pianos.manjera@gmail.com</a></span>
+        </div>
+        <div class="meta-item">
+          <span class="meta-key">LinkedIn</span>
+          <span class="meta-val"><a href="https://www.linkedin.com/in/pianosmanjera/" target="_blank">pianosmanjera</a></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== EXPERIENCE ===== -->
+<div class="section-wrap-full" id="experience">
+  <div class="inner reveal">
+    <p class="section-tag">// 02 — Experience</p>
+    <h2 class="section-title">Professional Journey</h2>
+    <div class="section-divider"></div>
+    <div class="timeline">
+
+      <div class="timeline-item">
+        <p class="timeline-period">NOV 2025 — PRESENT</p>
+        <h3 class="timeline-role">Research, Assessments & Monitoring Officer</h3>
+        <p class="timeline-org">World Food Programme — Zimbabwe</p>
+        <ul class="timeline-bullets">
+          <li>Lead and coordinate food security analysis to generate timely evidence, early warning insights, and rapid-response intelligence for preparedness, targeting, and programme decision-making</li>
+          <li>Coordinate with government, UN agencies, and partners to ensure alignment of data, analysis, and programme priorities</li>
+          <li>Strengthen and maintain RAM systems, tools, and data pipelines to ensure high-quality data collection, monitoring, and analysis in line with corporate standards</li>
+          <li>Enhance capacity in decentralized evaluation management and evidence processes to support high-quality planning and oversight</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-period">SEPT 2024 — SEPT 2025</p>
+        <h3 class="timeline-role">GIS Officer — Mapping & Analysis</h3>
+        <p class="timeline-org">World Food Programme — Southern Africa Regional Support</p>
+        <ul class="timeline-bullets">
+          <li>Provided technical GIS leadership supporting WFP's regional Vulnerability Analysis and Mapping (VAM) priorities, including food security monitoring and geographic targeting</li>
+          <li>Designed and implemented modular geospatial workflows and automated spatial reporting using ArcGIS Enterprise and Google Earth Engine</li>
+          <li>Developed and maintained real-time dashboards integrating Earth Observation and AI-driven indicators (rainfall, shocks, vegetation) to enhance early warning and operational coordination</li>
+          <li>Contributed to proposal development and reporting by providing geospatial inputs aligned with donor expectations and VAM programmatic frameworks</li>
+        </ul>
+      </div>
+
+      <div class="timeline-item">
+        <p class="timeline-period">MAY 2023 — AUG 2024</p>
+        <h3 class="timeline-role">Associate Information Management Officer (AAP)</h3>
+        <p class="timeline-org">UNHCR — East, Horn of Africa & Great Lakes Regional Support</p>
+        <ul class="timeline-bullets">
+          <li>Developed qualitative data feedback systems using Kobo Toolbox and Power BI for enhanced community engagement in program design</li>
+          <li>Developed SOPs and data governance protocols for GIS and IM platforms, contributing to standardized workflows across multiple country offices</li>
+          <li>Aligned IM platforms with result management systems style indicators, enhancing cross-project visibility and compliance tracking</li>
+          <li>Delivered IM briefings and training sessions to operational teams across five countries, increasing data-driven decision-making capacity</li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== SKILLS ===== -->
+<section id="skills">
+  <div class="section-wrap reveal">
+    <p class="section-tag">// 03 — Skills</p>
+    <h2 class="section-title">Technical Expertise</h2>
+    <div class="section-divider"></div>
+    <div class="skills-grid">
+      <div class="skill-category">
+        <h3 class="skill-cat-title">📊 Analytics & Modelling</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Python</span>
+          <span class="skill-tag">R</span>
+          <span class="skill-tag">SQL</span>
+          <span class="skill-tag">Excel</span>
+          <span class="skill-tag">Power Query</span>
+          <span class="skill-tag">SPSS</span>
+          <span class="skill-tag">DAX</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 class="skill-cat-title">🗺 GIS & Spatial Analysis</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">ArcGIS Pro</span>
+          <span class="skill-tag">ArcGIS Online</span>
+          <span class="skill-tag">ArcGIS Enterprise</span>
+          <span class="skill-tag">QGIS</span>
+          <span class="skill-tag">Google Earth Engine</span>
+          <span class="skill-tag">Cartography</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 class="skill-cat-title">📈 Visualization & BI</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Power BI</span>
+          <span class="skill-tag">Tableau</span>
+          <span class="skill-tag">ArcGIS Dashboards</span>
+          <span class="skill-tag">Excel Charts</span>
+          <span class="skill-tag">Operational Reporting</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 class="skill-cat-title">📋 Information Management</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">KoboToolbox</span>
+          <span class="skill-tag">ODK</span>
+          <span class="skill-tag">Survey123</span>
+          <span class="skill-tag">Data Quality Assurance</span>
+          <span class="skill-tag">Data Governance</span>
+          <span class="skill-tag">Reporting Systems</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 class="skill-cat-title">🌍 Humanitarian Domains</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Food Security Analysis</span>
+          <span class="skill-tag">VAM</span>
+          <span class="skill-tag">Early Warning</span>
+          <span class="skill-tag">Vulnerability Assessment</span>
+          <span class="skill-tag">M&amp;E</span>
+          <span class="skill-tag">AAP</span>
+        </div>
+      </div>
+      <div class="skill-category">
+        <h3 class="skill-cat-title">🔧 Platforms & Workflows</h3>
+        <div class="skill-tags">
+          <span class="skill-tag">Google Earth Engine</span>
+          <span class="skill-tag">SharePoint</span>
+          <span class="skill-tag">Microsoft 365</span>
+          <span class="skill-tag">WFP Corporate Systems</span>
+          <span class="skill-tag">UNHCR IM Tools</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PROJECTS ===== -->
+<div class="section-wrap-full" id="projects">
+  <div class="inner reveal">
+    <p class="section-tag">// 04 — Projects</p>
+    <h2 class="section-title">Selected Work</h2>
+    <div class="section-divider"></div>
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">GIS · Early Warning · Hazard Mapping</p>
+          <h3 class="project-title">Regional Flood Hazard & Risk Mapping</h3>
+          <p class="project-desc">Regional flood hazard and risk analysis supporting early warning, preparedness, and operational planning across Southern Africa — featured by RedR Australia.</p>
+        </div>
+        <div class="project-body">
+          <ul class="project-contributions">
+            <li>Integrated multi-source datasets (forecast, exposure, historical flood events) into a unified analytical workflow</li>
+            <li>Produced decision-focused maps and regional risk outputs used in preparedness and operational planning</li>
+            <li>Developed a flood risk scorecard to classify countries into severity levels for prioritization</li>
+            <li>Translated complex geospatial analysis into clear, actionable insights for non-technical stakeholders</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">ArcGIS Pro</span>
+            <span class="stack-tag">QGIS</span>
+            <span class="stack-tag">Excel</span>
+            <span class="stack-tag">Earth Observation</span>
+          </div>
+          <a href="https://www.redr.org.au/deployees-in-the-field/flood-mapping-saving-lives-in-southern-africa/" target="_blank" class="project-link">View RedR Case Study →</a>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">Dashboard · Food Security · Analytics</p>
+          <h3 class="project-title">Food Security Dashboards & Analytical Reporting</h3>
+          <p class="project-desc">Dashboards and reporting products that translate assessment, monitoring, and operational data into actionable food security insights for planning and targeting.</p>
+        </div>
+        <div class="project-body">
+          <ul class="project-contributions">
+            <li>Built data workflows from collection tools into analysis-ready outputs</li>
+            <li>Developed visual products for management, technical teams, and partners</li>
+            <li>Improved consistency in indicators, reporting logic, and presentation standards</li>
+            <li>Supported evidence generation for planning, monitoring, and review processes</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">Power BI</span>
+            <span class="stack-tag">Excel</span>
+            <span class="stack-tag">Python</span>
+            <span class="stack-tag">R</span>
+            <span class="stack-tag">KoboToolbox</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <p class="project-type">Training · Capacity Building · GIS</p>
+          <h3 class="project-title">GIS Capacity Building & Open-Source Transition</h3>
+          <p class="project-desc">Practical GIS learning sessions and materials helping users strengthen spatial analysis skills and move from proprietary tools to open-source workflows.</p>
+        </div>
+        <div class="project-body">
+          <ul class="project-contributions">
+            <li>Designed structured GIS learning sessions with practical exercises</li>
+            <li>Prepared step-by-step support materials for technical users</li>
+            <li>Promoted complementary use of QGIS and ArcGIS in operational contexts</li>
+            <li>Supported adoption of more flexible and sustainable GIS workflows</li>
+          </ul>
+          <div class="project-stack">
+            <span class="stack-tag">QGIS</span>
+            <span class="stack-tag">ArcGIS Pro</span>
+            <span class="stack-tag">Training Design</span>
+            <span class="stack-tag">Online Facilitation</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== CERTIFICATIONS ===== -->
+<section id="certifications">
+  <div class="section-wrap reveal">
+    <p class="section-tag">// 05 — Certifications</p>
+    <h2 class="section-title">Professional Development</h2>
+    <div class="section-divider"></div>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <p class="cert-org">DataCamp</p>
+        <h3 class="cert-title">Data Analyst Associate</h3>
+        <p class="cert-desc">Certification demonstrating applied skills in SQL, data analysis, and analytical problem-solving for real-world datasets.</p>
+        <a href="https://www.datacamp.com/certificate/DAA0015383093855" target="_blank" class="cert-link">View Certificate →</a>
+      </div>
+      <div class="cert-card">
+        <p class="cert-org">Maven Analytics</p>
+        <h3 class="cert-title">Information Management & Data Systems</h3>
+        <p class="cert-desc">Certification focused on data workflows, reporting systems, and analytics tools supporting data-driven decision-making.</p>
+        <a href="https://certificates.mavenanalytics.io/e6e9a3d8-c198-4fa9-94a3-fe5a24c2f161#acc.MJvZdDLT" target="_blank" class="cert-link">View Certificate →</a>
+      </div>
+      <div class="cert-card">
+        <p class="cert-org">Ongoing Development</p>
+        <h3 class="cert-title">GIS & Spatial Analysis</h3>
+        <p class="cert-desc">Continuous professional development in advanced GIS, spatial analysis, and geospatial workflows through practical application in humanitarian operations.</p>
+        <span class="cert-link" style="color: var(--teal); cursor:default;">In Progress</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== AI TOOLS ===== -->
+<div class="section-wrap-full" id="ai-tools">
+  <div class="inner reveal">
+    <p class="section-tag">// 06 — AI-Powered Tools</p>
+    <h2 class="section-title">Smart Job Hunting Tools</h2>
+    <div class="section-divider"></div>
+
+    <!-- API Key Setup -->
+    <div class="api-setup" id="apiSetup">
+      <p class="api-setup-title">🔑 Configure Anthropic API Key</p>
+      <p>These AI tools use the Anthropic API (Claude). Your key is stored only in your browser's local storage and sent exclusively to the Anthropic API. Get a key at <a href="https://console.anthropic.com" target="_blank" style="color:var(--accent);">console.anthropic.com</a>.</p>
+      <div class="api-key-row">
+        <input type="password" id="apiKeyInput" placeholder="sk-ant-api03-..." />
+        <button class="api-key-btn" onclick="saveApiKey()">Save</button>
+        <button class="api-key-btn danger" onclick="clearApiKey()">Clear</button>
+      </div>
+      <p class="api-status disconnected" id="apiStatus">No API key configured.</p>
+    </div>
+
+    <div class="ai-tools-grid">
+
+      <!-- JOB FIT ANALYZER -->
+      <div class="ai-section">
+        <span class="ai-badge">⚡ AI-Powered</span>
+        <h3 class="ai-title">Job Fit Analyzer</h3>
+        <p class="ai-desc">Paste any job description and get an instant AI analysis — fit score, matched skills, gaps, and specific positioning advice for your cover letter and interview.</p>
+        <textarea id="jobDesc" rows="9" placeholder="Paste the full job description here — the more detail, the better the analysis..."></textarea>
+        <button class="btn-ai" onclick="analyzeJobFit()" id="analyzeBtn">Analyze Job Fit →</button>
+        <div class="ai-result" id="fitResult">
+          <div class="fit-score-row">
+            <div class="fit-number" id="fitScore">—</div>
+            <div class="fit-bar-container">
+              <div class="fit-bar-label">Overall Profile Match</div>
+              <div class="fit-bar-track"><div class="fit-bar-fill" id="fitBarFill"></div></div>
+            </div>
+          </div>
+          <div class="ai-result-text" id="fitText"></div>
+        </div>
+      </div>
+
+      <!-- PORTFOLIO ASSISTANT -->
+      <div class="ai-section">
+        <span class="ai-badge">💬 AI-Powered</span>
+        <h3 class="ai-title">Portfolio Assistant</h3>
+        <p class="ai-desc">Ask anything about Pianos' experience, skills, or projects. Great for recruiters, collaborators, or anyone who wants to quickly learn about his background.</p>
+        <div class="chat-messages" id="chatMessages">
+          <div class="chat-msg ai">Hello! I'm an AI assistant with full knowledge of Pianos Gerald Manjera's professional background. Ask me anything about his GIS work, analytical projects, humanitarian experience, or skills — I'm happy to help.</div>
+        </div>
+        <div class="chat-input-row">
+          <input type="text" id="chatInput" placeholder="e.g. What GIS tools does Pianos use? What's his biggest project?" onkeydown="if(event.key==='Enter') sendChat()" />
+          <button class="chat-send-btn" onclick="sendChat()">Send →</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<!-- ===== RESUME ===== -->
+<section id="resume">
+  <div class="section-wrap reveal" style="text-align: center;">
+    <p class="section-tag" style="text-align:center;">// 07 — Resume</p>
+    <h2 class="section-title" style="text-align:center;">Download Full CV</h2>
+    <div class="section-divider" style="margin: 0 auto 1.5rem;"></div>
+    <p style="color: var(--muted); max-width: 480px; margin: 0 auto 2.5rem; line-height: 1.8;">
+      Want the complete picture? Download my resume covering experience in GIS, analytics, information management, dashboards, and humanitarian decision support.
+    </p>
+    <a href="https://pianosmanjera.github.io/pianos-portfolio/resume.pdf" target="_blank" class="btn-primary">Download Resume (PDF) →</a>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<div class="section-wrap-full" id="contact">
+  <div class="inner reveal">
+    <p class="section-tag">// 08 — Contact</p>
+    <h2 class="section-title">Let's Work Together</h2>
+    <div class="section-divider"></div>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Open for consultancy, collaboration & new roles</h3>
+        <p>Whether it's a GIS project, humanitarian analytics, dashboards, or information management work — I'd love to connect and explore how I can contribute.</p>
+        <div class="contact-links">
+          <a href="mailto:pianos.manjera@gmail.com" class="contact-link-item">
+            <div class="contact-link-icon">✉</div>
+            <div>
+              <div class="contact-link-text">pianos.manjera@gmail.com</div>
+              <div class="contact-link-label">Email</div>
+            </div>
+          </a>
+          <a href="https://www.linkedin.com/in/pianosmanjera/" target="_blank" class="contact-link-item">
+            <div class="contact-link-icon" style="font-size:0.75rem;font-weight:700;font-family:var(--mono);">in</div>
+            <div>
+              <div class="contact-link-text">linkedin.com/in/pianosmanjera</div>
+              <div class="contact-link-label">LinkedIn</div>
+            </div>
+          </a>
+          <a href="https://github.com/pianosmanjera" target="_blank" class="contact-link-item">
+            <div class="contact-link-icon">⌥</div>
+            <div>
+              <div class="contact-link-text">github.com/pianosmanjera</div>
+              <div class="contact-link-label">GitHub</div>
+            </div>
+          </a>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-group">
+          <label>Your Name</label>
+          <input type="text" placeholder="Jane Smith" id="contactName" />
+        </div>
+        <div class="form-group">
+          <label>Your Email</label>
+          <input type="text" placeholder="jane@organization.org" id="contactEmail" />
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea rows="5" placeholder="Tell me about the opportunity or project..." id="contactMsg"></textarea>
+        </div>
+        <button class="form-submit" onclick="submitContact()">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <p>© 2025 <span>Pianos Gerald Manjera</span> · Harare, Zimbabwe</p>
+  <p style="margin-top:0.3rem;">GIS · Data Analytics · Information Management · Humanitarian Decision Support</p>
+</footer>
+
+<script>
+// ===== SCROLL ANIMATIONS =====
+const revealEls = document.querySelectorAll('.reveal');
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) { e.target.classList.add('visible'); revealObserver.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+revealEls.forEach(r => revealObserver.observe(r));
+
+// ===== COUNTER ANIMATION =====
+const counters = document.querySelectorAll('[data-count]');
+const counterObserver = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
+    const target = +e.target.getAttribute('data-count');
+    const suffix = e.target.getAttribute('data-suffix') || '+';
+    let current = 0;
+    const step = target / 45;
+    const timer = setInterval(() => {
+      current += step;
+      if (current >= target) {
+        e.target.textContent = target + suffix;
+        clearInterval(timer);
+      } else {
+        e.target.textContent = Math.floor(current) + suffix;
+      }
+    }, 38);
+    counterObserver.unobserve(e.target);
+  });
+}, { threshold: 0.5 });
+counters.forEach(c => counterObserver.observe(c));
+
+// ===== API KEY MANAGEMENT =====
+let apiKey = localStorage.getItem('pianos_portfolio_key') || '';
+
+function updateApiStatus() {
+  const status = document.getElementById('apiStatus');
+  if (apiKey && (apiKey.startsWith('sk-ant-') || apiKey.startsWith('sk-'))) {
+    status.textContent = '✓ API key saved. AI tools are ready to use.';
+    status.className = 'api-status connected';
+  } else {
+    status.textContent = 'No API key configured. Enter your key above to activate AI tools.';
+    status.className = 'api-status disconnected';
+  }
+}
+
+function saveApiKey() {
+  const val = document.getElementById('apiKeyInput').value.trim();
+  if (!val) { alert('Please enter an API key.'); return; }
+  apiKey = val;
+  localStorage.setItem('pianos_portfolio_key', apiKey);
+  document.getElementById('apiKeyInput').value = '';
+  updateApiStatus();
+}
+
+function clearApiKey() {
+  apiKey = '';
+  localStorage.removeItem('pianos_portfolio_key');
+  document.getElementById('apiKeyInput').value = '';
+  updateApiStatus();
+}
+
+updateApiStatus();
+
+// ===== PIANOS PROFILE CONTEXT =====
+const PIANOS_PROFILE = `You are an AI assistant for Pianos Gerald Manjera's professional portfolio website. Answer all questions about his background accurately, concisely, and professionally. If asked something you don't know, say so — do not invent details.
+
+=== PIANOS GERALD MANJERA — FULL PROFESSIONAL PROFILE ===
+
+SUMMARY:
+GIS and data analytics professional with 9+ years supporting humanitarian and development operations across Southern Africa, East Africa, and Afghanistan. Specializes in transforming data into decision-ready insights for food security analysis, targeting, emergency preparedness, and programme monitoring.
+
+CURRENT ROLE:
+Research, Assessments and Monitoring Officer — World Food Programme Zimbabwe (Nov 2025 – Present)
+- Lead food security analysis for early warning and programme decision-making
+- Coordinate with government, UN agencies, and partners
+- Strengthen RAM systems, tools, and data pipelines
+- Enhance evaluation management and evidence processes
+
+PREVIOUS EXPERIENCE:
+1. GIS Officer (Mapping & Analysis) — WFP Southern Africa Regional Support (Sept 2024 – Sept 2025)
+   - Regional GIS leadership for VAM priorities
+   - Automated spatial reporting using ArcGIS Enterprise and Google Earth Engine
+   - Real-time dashboards with Earth Observation and AI-driven indicators
+   - Geospatial inputs for proposals and donor reporting
+
+2. Associate Information Management Officer (AAP) — UNHCR East, Horn of Africa & Great Lakes (May 2023 – Aug 2024)
+   - Qualitative data feedback systems (Kobo Toolbox, Power BI)
+   - SOPs and data governance protocols across 5 country offices
+   - IM briefings and training across 5 countries
+
+Prior roles also include positions with REACH, NPA, and other humanitarian organizations.
+
+TECHNICAL SKILLS:
+- Analytics & Modelling: Python, R, SQL, Excel, Power Query, SPSS, DAX
+- GIS: ArcGIS Pro, ArcGIS Online, ArcGIS Enterprise, QGIS, Google Earth Engine, Cartography
+- Visualization/BI: Power BI, Tableau, ArcGIS Dashboards
+- Information Management: KoboToolbox, ODK, Survey123, Data Quality Assurance, Data Governance, Reporting Systems
+- Humanitarian Domains: Food Security Analysis, VAM, Early Warning, Vulnerability Assessment, M&E, AAP
+- Platforms: Microsoft 365, SharePoint, WFP Corporate Systems, UNHCR IM Tools
+
+KEY PROJECTS:
+1. Regional Flood Hazard & Risk Mapping (Southern Africa)
+   - Featured by RedR Australia
+   - Tech: ArcGIS Pro, QGIS, Excel, Earth Observation data
+   - Flood risk scorecard classifying countries by severity
+
+2. Food Security Dashboards & Analytical Reporting
+   - Power BI, Excel, Python, R, KoboToolbox
+   - End-to-end data workflows for food security monitoring
+
+3. GIS Capacity Building & Open-Source Transition
+   - QGIS, ArcGIS Pro training and materials
+
+CERTIFICATIONS:
+- Data Analyst Associate — DataCamp
+- Information Management & Data Systems — Maven Analytics
+- GIS & Spatial Analysis — Ongoing
+
+PERSONAL:
+- Location: Harare, Zimbabwe
+- Status: Open to consulting, analytics, GIS, and information management opportunities
+- Email: pianos.manjera@gmail.com
+- LinkedIn: linkedin.com/in/pianosmanjera
+- GitHub: github.com/pianosmanjera`;
+
+// ===== ANTHROPIC API CALL =====
+async function callClaude(messages, systemPrompt) {
+  if (!apiKey) throw new Error('No API key configured. Please add your Anthropic API key above.');
+  const response = await fetch('https://api.anthropic.com/v1/messages', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': apiKey,
+      'anthropic-version': '2023-06-01',
+      'anthropic-dangerous-allow-browser': 'true'
+    },
+    body: JSON.stringify({
+      model: 'claude-haiku-4-5-20251001',
+      max_tokens: 1024,
+      system: systemPrompt,
+      messages
+    })
+  });
+  const data = await response.json();
+  if (data.error) throw new Error(data.error.message || 'API error');
+  return data.content[0].text;
+}
+
+// ===== JOB FIT ANALYZER =====
+async function analyzeJobFit() {
+  const jobDesc = document.getElementById('jobDesc').value.trim();
+  if (!jobDesc) { alert('Please paste a job description first.'); return; }
+  if (!apiKey) { alert('Please configure your Anthropic API key first.'); return; }
+
+  const btn = document.getElementById('analyzeBtn');
+  btn.disabled = true;
+  btn.textContent = 'Analyzing...';
+
+  const resultEl = document.getElementById('fitResult');
+  resultEl.classList.add('visible');
+  document.getElementById('fitText').textContent = 'Running analysis, please wait...';
+  document.getElementById('fitScore').textContent = '—';
+  document.getElementById('fitBarFill').style.width = '0%';
+
+  try {
+    const prompt = `Analyze the fit between Pianos Gerald Manjera's profile and this job description.
+
+JOB DESCRIPTION:
+${jobDesc}
+
+Respond with the following structure — be specific, actionable, and honest:
+
+SCORE: [0-100]
+
+✅ MATCHED SKILLS & EXPERIENCE
+List specific skills, tools, and experience from his profile that directly match requirements.
+
+⚠️ POTENTIAL GAPS
+Be honest about any gaps — skills or experience that may be missing or weak.
+
+🎯 HOW TO POSITION THE APPLICATION
+Specific advice: which aspects of his background to lead with, angle for the cover letter, key narrative.
+
+💡 INTERVIEW TALKING POINTS
+3-4 concrete examples or achievements to highlight in an interview for this role.
+
+📝 SUGGESTED COVER LETTER OPENING
+Write a strong 2-3 sentence opening paragraph for a cover letter for this specific role.`;
+
+    const result = await callClaude([{ role: 'user', content: prompt }], PIANOS_PROFILE);
+
+    const scoreMatch = result.match(/SCORE:\s*(\d+)/i);
+    const score = scoreMatch ? Math.min(100, Math.max(0, parseInt(scoreMatch[1]))) : 70;
+    const cleanResult = result.replace(/SCORE:\s*\d+\n?/i, '').trim();
+
+    const scoreEl = document.getElementById('fitScore');
+    scoreEl.textContent = score + '%';
+    scoreEl.style.color = score >= 75 ? 'var(--teal)' : score >= 50 ? 'var(--accent-light)' : '#e87070';
+
+    document.getElementById('fitBarFill').style.width = score + '%';
+    document.getElementById('fitText').textContent = cleanResult;
+  } catch (err) {
+    document.getElementById('fitText').textContent = '⚠ Error: ' + err.message;
+  } finally {
+    btn.disabled = false;
+    btn.textContent = 'Analyze Job Fit →';
+  }
+}
+
+// ===== PORTFOLIO CHAT =====
+const chatHistory = [];
+
+function appendMsg(role, text) {
+  const container = document.getElementById('chatMessages');
+  const div = document.createElement('div');
+  div.className = 'chat-msg ' + (role === 'user' ? 'user' : 'ai');
+  div.textContent = text;
+  container.appendChild(div);
+  container.scrollTop = container.scrollHeight;
+  return div;
+}
+
+async function sendChat() {
+  const input = document.getElementById('chatInput');
+  const text = input.value.trim();
+  if (!text) return;
+  if (!apiKey) { alert('Please configure your Anthropic API key first.'); return; }
+
+  input.value = '';
+  appendMsg('user', text);
+  chatHistory.push({ role: 'user', content: text });
+
+  const typing = appendMsg('ai', '...');
+  typing.classList.add('typing');
+
+  try {
+    const reply = await callClaude([...chatHistory], PIANOS_PROFILE);
+    typing.remove();
+    appendMsg('ai', reply);
+    chatHistory.push({ role: 'assistant', content: reply });
+  } catch (err) {
+    typing.remove();
+    appendMsg('ai', '⚠ Error: ' + err.message);
+  }
+}
+
+// ===== CONTACT FORM =====
+function submitContact() {
+  const name = document.getElementById('contactName').value.trim();
+  const email = document.getElementById('contactEmail').value.trim();
+  const msg = document.getElementById('contactMsg').value.trim();
+  if (!name || !email || !msg) { alert('Please fill in all fields.'); return; }
+  const subject = encodeURIComponent('Portfolio Inquiry from ' + name);
+  const body = encodeURIComponent(`Hi Pianos,\n\n${msg}\n\nBest regards,\n${name}\n${email}`);
+  window.open(`mailto:pianos.manjera@gmail.com?subject=${subject}&body=${body}`, '_blank');
+}
+</script>
 </body>
 </html>
